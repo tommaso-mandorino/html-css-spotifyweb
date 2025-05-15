@@ -1,0 +1,65 @@
+/* #region Resets */
+
+/* Globals */
+* {
+    border: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Links */
+a {
+    text-decoration-line: none;
+    color: inherit;
+}
+
+/* #endregion Resets */
+
+/* Root variables */
+:root {
+    
+    /* #region Colors */
+    --main-menu-bar-bg-color: black;
+    --main-menu-text-color: #6f6f6f;
+    /*
+    #141922
+    #080b12
+    #282828
+    #a3a3a3
+    */
+    /* #endregion Colors */
+}
+
+/* Utilities */
+.debug {
+    * {
+        border: 1px solid red;
+    }
+}
+
+/* #region App related */
+
+    /* #region HTML */
+        html {
+
+            /* #region Body */
+
+                body {
+                    .main-menu {
+                        background-color: var(--main-menu-bar-bg-color);
+                        color: var(--main-menu-text-color);
+                        .app-logo-link {
+                            
+                        }
+                        .playlist {
+                            
+                        }
+                    }
+                }
+
+            /* #endregion Body */
+
+        }
+    /* #endregion HTML */
+
+/* #endregion App related */
