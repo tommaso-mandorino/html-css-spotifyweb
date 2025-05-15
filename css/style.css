@@ -2,9 +2,11 @@
 
 /* Globals */
 * {
-    border: 0;
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
+    line-height: 1;
+    vertical-align: middle;
 }
 
 /* Links */
@@ -13,53 +15,134 @@ a {
     color: inherit;
 }
 
+/* Images */
+img {
+    width: 100%;
+}
+
+/* Unordered lists */
+ul {
+    li {
+        line-height: 2;
+    }
+}
+
 /* #endregion Resets */
 
 /* Root variables */
 :root {
+
+    /* #region Typography */
+
+        /* Font size base(rem) */
+        --font-size-base: 16px;
+
+    /* #endregion Typography */
     
     /* #region Colors */
-    --main-menu-bar-bg-color: black;
-    --main-menu-text-color: #6f6f6f;
-    /*
-    #141922
-    #080b12
-    #282828
-    #a3a3a3
-    */
+
+        /* Main menu background color */
+        --main-menu-bg-color: black;
+        /* Main menu text color */
+        --main-menu-text-color: #6f6f6f;
+
+        /* Top bar background color */
+        --top-bar-bg-color: #080b12;
+
+        /* App main background color */
+        --app-main-bg-color: #141922;
+
+        /* App bottom background color */
+        --app-bottom-bg-color: #282828;
+
+        /*
+        #a3a3a3
+        */
+
     /* #endregion Colors */
 }
 
-/* Utilities */
+/* #region Utility classes */
+
 .debug {
     * {
         border: 1px solid red;
     }
 }
 
-/* #region App related */
+/* #endregion Utility classes */
+
+/* #region General rules */
+
+
+
+/* #endregion General rules */
+
+/* #region App related rules */
 
     /* #region HTML */
         html {
-
+            font-size: var(--font-size-base);
             /* #region Body */
-
                 body {
-                    .main-menu {
-                        background-color: var(--main-menu-bar-bg-color);
-                        color: var(--main-menu-text-color);
-                        .app-logo-link {
-                            
+                    color: white; /* DA TOGLIERE */
+                    .app {
+                        height: 100vh;
+                        .app-top {
+                            display: flex;
+                            height: calc(100% - 100px); /* DA CAMBIARE */
+                            .left-panel {
+                                .main-menu {
+                                    width: 300px; /* DA CAMBIARE */
+                                    height: calc(100%); /* DA CAMBIARE */
+                                    background-color: var(--main-menu-bg-color);
+                                    color: var(--main-menu-text-color);
+                                    .app-logo-link {
+                                        display: inline-block;
+                                        padding: 1rem;
+                                        .app-logo-image {
+                                            width: 12rem; /* DA CAMBIARE */
+                                        }
+                                    }
+                                    .tabs-list {
+                                        .tab-link {
+                                            display: inline-block;
+                                            .tab-icon {
+                                                width: 1.5rem; /* DA CAMBIARE */
+                                            }   
+                                        }
+                                    }
+                                    .playlist {
+    
+                                    }
+                                }
+                            }
+                            .right-panel {
+                                display: flex;
+                                flex-direction: column;
+                                width: 100%;
+                                .top-bar {
+                                    width: 100%;
+                                    height: 100px; /* DA CAMBIARE */
+                                    background-color: var(--top-bar-bg-color);
+                                    text-align: right;
+                                }
+                                .app-main {
+                                    width: 100%;
+                                    height: 100%;
+                                    background-color: var(--app-main-bg-color);
+                                }
+                            }
                         }
-                        .playlist {
-                            
+                        .app-bottom {
+                            height: 100px; /* DA CAMBIARE */
+                            background-color: var(--app-bottom-bg-color);
                         }
                     }
                 }
-
             /* #endregion Body */
 
         }
     /* #endregion HTML */
 
-/* #endregion App related */
+/* #endregion App related rules */
