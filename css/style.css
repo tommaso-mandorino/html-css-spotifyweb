@@ -6,7 +6,6 @@
     padding: 0;
     box-sizing: border-box;
     line-height: 1;
-    vertical-align: middle;
 }
 
 /* Links */
@@ -17,6 +16,7 @@ a {
 
 /* Images */
 img {
+    /* Sizing */
     width: 100%;
 }
 
@@ -58,6 +58,9 @@ ul {
 
         /* App main background color */
         --app-main--bg-color: #141922;
+
+        /* Profile picture background color */
+        --profile-picture--bg-color: #808080;
 
         /*
         #a3a3a3
@@ -109,6 +112,9 @@ ul {
 
                     /* #region App-Top, Left section */
                     .app-top__left {
+
+                        /* Spacing */
+                        padding: 1.5rem;
 
                         /* Display */
                         display: flex;
@@ -163,7 +169,8 @@ ul {
                                         /* Menu link */
                                         .menu-link {
                                             
-                                            display: inline-block;
+                                            color: white;
+                                            border-left: 3px solid #adff2f;
 
                                             /* Menu image */
                                             .menu-image {
@@ -245,6 +252,9 @@ ul {
                             /* Installation section */
                             .installation-section {
 
+                                /* Spacing */
+                                padding: 1rem 0;
+
                                 /* Install app link button */
                                 .install-app-link-button {
 
@@ -270,20 +280,46 @@ ul {
                             /* Profile section */
                             .profile-section {
 
+                                /* Spacing */
+                                padding: 1rem 0;
+
                                 /* Profile link button */
                                 .profile-link-button {
 
-                                    /* Profile image */
-                                    .profile-image {
+                                    /* Image wrapper */
+                                    .image-wrapper {
 
-                                        /* Sizing */
-                                        width: 1rem;
+                                        /* Display */
+                                        display: inline;
 
+                                        /* Spacing */
+                                        padding: 0.25rem;
+
+                                        /* Borders */
+                                        border-radius: 50%;
+
+                                        /* Colors */
+                                        background-color: var(--profile-picture--bg-color);
+
+                                        /* Profile image */
+                                        .profile-image {
+
+                                            /* Sizing */
+                                            width: 1rem;
+
+                                            aspect-ratio: 1/1;
+
+                                        }
                                     }
 
                                     /* Profile text */
                                     .profile-text {
 
+                                        /* Typography */
+                                        font-weight: bold;
+
+                                        /* Colors */
+                                        color: white;
                                     }
                                 }
                             }
@@ -292,7 +328,7 @@ ul {
                     }
                     /* #endregion App-Top, Left section */
 
-                    /* #endregion App-Top, Left section */
+                    /* #region App-Top, Right section */
                     .app-top__right {
 
                         display: flex;
@@ -337,17 +373,49 @@ ul {
                         }
                         /* #endregion App-Top-Right, Top section */
 
-                        /* #region App-Top-Right, Bottom section */
+                        /* #region Main section */
                         main {
 
                             /* Layout */
                             flex-grow: 1;
 
+                            /* Spacing */
+                            padding: 1rem;
+
                             /* Colors */
                             background-color: var(--app-main--bg-color);
+
+                            /* Music category section */
+                            .music-category-section {
+
+                                /* Category list */
+                                .category-list {
+                                    
+                                    /* Display */
+                                    display: flex;
+                                    justify-content: center;
+                                    column-gap: 1.5rem;
+
+                                    /* Category item */
+                                    .category-item {
+
+                                        /* Category link */
+                                        .category-link {
+                                            text-transform: uppercase;
+
+
+                                            color: #7b7e82;
+
+
+
+                                        }
+                                    }
+                                }
+                            }
                         }
-                        /* #endregion App-Top-Right, Bottom section */
+                        /* #endregion Main section */
                     }
+                    /* #endregion App-Top, Right section */
                 }
                 /* #endregion App, Top section */
 
