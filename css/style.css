@@ -1,78 +1,25 @@
-/* #region Resets */
-
-/* For all elements */
+/* Resets for all elements */
 * {
-    /* Spacing */
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
-
-    /* Borders */
+    margin: 0;
     border: 0;
-
-    /* Typography */
-    line-height: 1;
+    padding: 0;
 }
 
-/* Links */
-a {
-    /* Display */
-    display: inline-block;
-
-    /* Typography */
-    text-decoration-line: none;
-
-    /* Colors */
-    color: inherit;
-}
-
-/* Images */
-img {
-    /* Sizing */
-    width: 100%;
-
-    /* Alignment */
-    vertical-align: middle;
-}
-
-/* Spans */
-span {
-    /* Alignment */
-    vertical-align: middle;
-}
-
-/* Unordered lists */
-ul {
-
-    /* List items */
-    li {
-        /* Typography */
-        list-style-type: none;
-        line-height: 2;
-    }
-}
-
-/* Buttons */
-button {
-
-    /* Colors */
-    background-color: inherit;
-    color: inherit;
-
-    /* Hover */
-    :hover {
-
-        /* Cursor */
-        cursor: pointer;
-    }
-}
-
-/* #endregion Resets */
-
-/* Root variables */
+/* #region Root variables */
 :root {
 
+    /* #region Sizing */
+
+        /* Bottom bar height */
+        --bottom-bar--height: 100px;
+
+    /* #endregion Sizing */
+
     /* #region Typography */
+
+        /* Line height base */
+        --line-height--base: 1;
 
         /* Font size base(rem) */
         --font-size-base: 16px;
@@ -80,8 +27,11 @@ button {
         /* Font weight base */
         --font-weight--base: bold;
 
-        /* Color base */
-        --color--base: #6f6f6f;
+        /* Text color base */
+        --text-color--base: #6f6f6f;
+
+        /* Text accent color base */
+        --text-accent-color--base: white;
 
     /* #endregion Typography */
     
@@ -91,7 +41,7 @@ button {
         --accent-color: #adff2f;
 
         /* Top bar background color */
-        --top-bar--bg-color: #080b12;
+        --top-bar--bg-color: rgba(8, 11, 18, 0.6);
 
         /* Bottom bar background color */
         --bottom-bar--bg-color: #282828;
@@ -102,15 +52,15 @@ button {
         /* Main section background color */
         --main-section--bg-color: #141922;
 
+        /* Create playlist icon background color */
+        --create-playlist-icon--bg-color: #a3a3a3;
+
         /* Profile picture background color */
         --profile-picture--bg-color: #808080;
 
-        /*
-        #a3a3a3
-        */
-
     /* #endregion Colors */
 }
+/* #endregion Root variables */
 
 /* #region Utility classes */
 
@@ -126,277 +76,222 @@ button {
 
     }
 
-    /* #reagion Columns */
+    .rounded {
 
-        /* Column of 2 / 12 */
-        .col {
+        /* Borders */
+        border-radius: 50%;
+    }
 
-            /* Sizing */
-            width: calc(100% / 12 * 2);
-        }
+    /* Progress cursor */
+    .progress-cursor {
 
-        /* Column of 4 / 12 */
-        .col-4 {
+        /* Display */
+        display: none;
 
-            /* Sizing */
-            width: calc(100% / 12 * 4);
-        }
+        /* Positioning */
+        translate: -50%;
 
-        /* Column of 6 / 12 */
-        .col-6 {
+        /* Sizing */
+        width: 1rem;
+        height: 1rem;
 
-            /* Sizing */
-            width: calc(100% / 12 * 6);
-        }
+        /* Borders */
+        border-radius: 50%;
 
-    /* #endreagion Columns */
+        /* Colors */
+        background-color: white;
+    }
 
 /* #endregion Utility classes */
 
-/* #region App related rules */
+/* #region General rules */
 
     /* #region HTML */
     html {
 
         /* Typography */
+        line-height: var(--line-height--base);
         font-size: var(--font-size--base);
         font-weight: var(--font-weight--base);
 
         /* Colors */
-        color: var(--color--base);
+        color: var(--text-color--base);
 
         /* #region Body */
         body {
 
-            /* #region App */
-            .app {
+            /* Links */
+            a {
+                /* Display */
+                display: inline-block;
 
-                /* Layout */
+                /* Typography */
+                text-decoration-line: none;
+
+                /* Colors */
+                color: inherit;
+            }
+
+            /* Images */
+            img {
+                /* Sizing */
+                width: 100%;
+
+                /* Vertical alignment */
+                vertical-align: middle;
+            }
+
+            /* Spans */
+            span {
+                /* Vertical alignment */
+                vertical-align: middle;
+            }
+
+            /* Unordered lists */
+            ul {
+
+                /* List items */
+                li {
+
+                    /* Typography */
+                    list-style-type: none;
+                    line-height: 2;
+                }
+            }
+
+            /* Buttons */
+            button {
+
+                /* Typography */
+                font-weight: inherit;
+                text-align: left;
+
+                /* Colors */
+                background-color: transparent;
+                color: inherit;
+
+                /* Hover */
+                &:hover {
+
+                    /* Cursor */
+                    cursor: pointer;
+
+                    /* Colors */
+                    color: var(--text-accent-color--base);
+                }
+            }
+        }
+        /* #endregion Body */
+    }
+    /* #endregion HTML */
+
+/* #endregion General rules */
+
+/* #region App related rules */
+
+    /* #region App */
+    .app {
+
+        /* Overflowing */
+        overflow-y: hidden;
+
+        /* Layout */
+        display: flex;
+        flex-direction: column;
+
+        /* #region App, Top section */
+        .app__top {
+            
+            /* Display */
+            display: flex;
+
+            /* Sizing */
+            flex-grow: 1;
+
+            max-height: calc( 100vh - var(--bottom-bar--height));
+
+            /* #region Left bar, Left section */
+            .left-bar {
+                
+                /* Display */
                 display: flex;
                 flex-direction: column;
-                height: 100vh;
+                justify-content: space-between;
 
-                /* #region App, Top section */
-                .app__top {
-                    
-                    /* Layout */
-                    display: flex;
-                    flex-grow: 1;
+                /* Colors */
+                background-color: var(--left-bar--bg-color);
+                color: var(--left-bar--text-color);
 
-                    /* #region App-Top, Left section */
-                    .app-top__left {
+                /* #region Left bar, Top section */
+                .left-bar__top {
 
-                        /* Display */
-                        display: flex;
+                    /* Logo link section */
+                    .logo-link-section {
 
-                        /* Flex */
-                        flex-direction: column;
-                        justify-content: space-between;
+                        /* Logo link */
+                        .logo-link {
+                            
+                            /* Spacing */
+                            padding: 0.5rem;
 
-                        /* Colors */
-                        background-color: var(--left-bar--bg-color);
-                        color: var(--left-bar--text-color);
+                            /* Logo link image */
+                            .logo-link-image {
 
-                        /* #region App-Top-Left, Top section */
-                        .app-top-left__top {
+                                /* Normal */
+                                &.normal {
 
-                            /* Logo link section */
-                            .logo-link-section {
+                                    /* Display */
+                                    display: none;
 
-                                /* Logo link */
-                                .logo-link {
-                                    
-                                    /* Spacing */
-                                    padding: 1.5rem 5rem 1rem 1.5rem;
-
-                                    /* Logo link image */
-                                    .logo-link-image {
-
-                                        /* Sizing */
-                                        width: 8rem;
-                                    }
-                                }
-                            }
-
-                            /* Main menu section */
-                            .main-menu-section {
-
-                                /* Menu list */
-                                .menu-list {
-
-                                    /* Menu item */
-                                    .menu-item {
-
-                                        /* Spacing */
-                                        line-height: 2.3;
-
-                                        /* Menu link */
-                                        .menu-link {
-
-                                            /* Spacing */
-                                            padding: 0.5rem 0 0.5rem 1.5rem;
-                                            
-                                            /* Menu image */
-                                            .menu-image {
-
-                                                /* Sizing */
-                                                width: 1.5rem;
-                                            }
-
-                                            /* Menu text */
-                                            .menu-text {
-
-                                            }
-
-                                            &.selected {
-
-                                                /* Borders */
-                                                border-left: 3px solid var(--accent-color);
-
-                                                /* Colors */
-                                                color: white;
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-
-                            /* Playlist section */
-                            .playlist-section {
-
-                                /* Spacing */
-                                padding: 1rem;
-
-                                /* Playlist section title */
-                                .playlist-section-title {
-
-                                    /* Spacing */
-                                    padding: 0.3rem 0 0.5rem 0;
-
-                                    /* Typography */
-                                    text-transform: uppercase;
-                                    font-size: 1rem;
-
-                                    /* Colors */
-                                    color: white;
+                                    /* Sizing */
+                                    width: 13rem;
                                 }
 
-                                /* Playlist section actions */
-                                .playlist-section-actions {
+                                /* Small */
+                                &.small {
 
-                                    /* Create playlist link button */
-                                    .create-playlist-link-button {
-
-                                        /* Link button icon */
-                                        .link-button-icon {
-
-                                            /* Sizing */
-                                            width: 1rem;
-                                            height: 1rem;
-
-                                            /* Spacing */
-                                            padding: 0.5rem;
-
-                                            /* Colors */
-                                            background-color: white;
-                                        }
-
-                                        /* Link button text */
-                                        .link-button-text {
-
-                                            /* Typography */
-                                            font-size: 1.1rem;
-                                        }
-                                    }
+                                    /* Sizing */
+                                    width: 1.5rem;
                                 }
 
-                                /* Playlist list */
-                                .playlist-list {
-
-                                    /* Playlist item */
-                                    playlist-item {
-
-                                        /* Playlist link */
-                                        .playlist-link {
-
-                                            /* Typography */
-                                            font-size: 0.9rem;
-                                        }
-                                    }
-                                }
                             }
                         }
-                        /* #endregion App-Top-Left, Top section */
+                    }
 
-                        /* #region App-Top-Left, Bottom section */
-                        .app-top-left__bottom {
+                    /* Main menu section */
+                    .main-menu-section {
 
-                            /* Installation section */
-                            .installation-section {
+                        /* Menu list */
+                        .menu-list {
 
-                                /* Spacing */
-                                padding: 1rem 0;
+                            /* Menu item */
+                            .menu-item {
 
-                                /* Install app link button */
-                                .install-app-link-button {
+                                /* Typography */
+                                line-height: 2.3;
+                                text-align: center;
 
-                                    /* Install app image */
-                                    .install-app-image {
+                                /* Menu button */
+                                .menu-button {
+
+                                    /* Spacing */
+                                    padding: 0.5rem 0;
+                                    
+                                    /* Menu image */
+                                    .button-image {
 
                                         /* Sizing */
-                                        width: 1rem;
+                                        width: 1.5rem;
                                     }
 
-                                    /* Install app text */
-                                    .install-app-text {
-
-                                    }
-                                }
-                            }
-
-                            /* Separator */
-                            .app-top-left-bottom__separator {
-
-                            }
-
-                            /* Profile section */
-                            .profile-section {
-
-                                /* Spacing */
-                                padding: 1rem 0;
-
-                                /* Profile link button */
-                                .profile-link-button {
-
-                                    /* Image wrapper */
-                                    .image-wrapper {
+                                    /* Button text */
+                                    .button-text {
 
                                         /* Display */
-                                        display: inline;
-
-                                        /* Spacing */
-                                        padding: 0.25rem;
-
-                                        /* Borders */
-                                        border-radius: 50%;
-
-                                        /* Colors */
-                                        background-color: var(--profile-picture--bg-color);
-
-                                        /* Profile image */
-                                        .profile-image {
-
-                                            /* Sizing */
-                                            width: 1rem;
-                                            aspect-ratio: 1/1;
-                                        }
+                                        display: none;
                                     }
 
-                                    /* Profile text */
-                                    .profile-text {
-
-                                        /* Cursor */
-                                        cursor: auto;
+                                    &.selected {
 
                                         /* Colors */
                                         color: white;
@@ -404,399 +299,865 @@ button {
                                 }
                             }
                         }
-                        /* #endregion App-Top-Left, Bottom section */
                     }
-                    /* #endregion App-Top, Left section */
 
-                    /* #region App-Top, Right section */
-                    .app-top__right {
+                    /* #region Playlist section */
+                    .playlist-section {
 
-                        display: flex;
-                        flex-direction: column;
+                        /* Display */
+                        display: none;
 
-                        /* Sizing */
-                        flex-grow: 1;
+                        /* Spacing */
+                        padding: 0 1rem;
 
-                        /* #region App-Top-Right, Top section */
-                        .app-top-right__top {
-                            
+                        /* Playlist section title */
+                        .playlist-section-title {
+
                             /* Spacing */
-                            padding: 1.5rem;
+                            padding: 0.3rem 0 0.5rem 0;
 
-                            /* Text alignment */
-                            text-align: right;
+                            /* Typography */
+                            text-transform: uppercase;
+                            font-size: 1rem;
 
-                            /* Background */
-                            background-color: var(--top-bar--bg-color);
+                            /* Colors */
+                            color: white;
+                        }
 
-                            .upgrade-link-button {
+                        /* Playlist section actions */
+                        .playlist-section-actions {
+
+                            /* Create playlist button */
+                            .create-playlist-button {
 
                                 /* Spacing */
-                                padding: 0.8rem 2.3rem;
+                                padding: 0.5rem 0;
 
-                                /* Borders */
-                                border: 1px solid white;
-                                border-radius: 3rem;
+                                /* Button icon */
+                                .button-icon {
 
-                                /* Text */
-                                text-transform: uppercase;
-                                font-size: 0.8rem;
+                                    /* Display */
+                                    display: inline-block;
+
+                                    /* Sizing */
+                                    width: 2rem;
+                                    height: 2rem;
+
+                                    /* Spacing */
+                                    margin-right: 0.5rem;
+                                    padding: 0.25rem;
+
+                                    /* Typography */
+                                    text-align: center;
+                                    font-size: 1.5rem;
+
+                                    /* Colors */
+                                    background-color: var(--create-playlist-icon--bg-color);
+                                    color: black;
+                                }
+
+                                /* Button text */
+                                .button-text {
+
+                                    /* Typography */
+                                    font-size: 1rem;
+                                }
+
+                                /* Hover */
+                                &:hover {
+
+                                    /* Button icon */
+                                    .button-icon {
+                                        
+                                        /* Colors */
+                                        background-color: var(--text-accent-color--base);
+                                    }
+                                }
+                            }
+                        }
+
+                        /* Playlist list */
+                        .playlist-list {
+
+                            /* Playlist item */
+                            playlist-item {
+
+                                /* Playlist button */
+                                .playlist-button {
+
+                                    /* Typography */
+                                    font-size: 0.9rem;
+                                }
+                            }
+                        }
+                    }
+                    /* #endregion Playlist section */
+                }
+                /* #endregion Left bar, Top section */
+
+                /* #region Left bar, Bottom section */
+                .left-bar__bottom {
+
+                    /* Typography */
+                    text-align: center;
+
+                    /* Installation section */
+                    .installation-section {
+
+                        /* Spacing */
+                        padding: 0.5rem 0;
+
+                        /* Install app button */
+                        .install-app-button {
+
+                            /* Button image */
+                            .button-image {
+
+                                /* Sizing */
+                                width: 1rem;
+                            }
+
+                            .button-text {
+
+                                /* Display */
+                                display: none;
+                            }
+                        }
+                    }
+
+                    /* Separator */
+                    .left-bar-separator {
+
+                        /* Display */
+                        display: none;
+
+                        /* Borders */
+                        border: 1px solid var(--text-color--base);
+                    }
+
+                    /* Profile section */
+                    .profile-section {
+
+                        /* Spacing */
+                        padding: 0.5rem 0;
+
+                        /* Profile link button */
+                        .profile-button {
+
+                            /* Image wrapper */
+                            .image-wrapper {
+
+                                /* Display */
+                                display: inline-block;
+
+                                /* Sizing */
+                                width: 1.5rem;
+                                height: 1.5rem;
+
+                                padding: 0.25rem;
+
+                                /* Colors */
+                                background-color: var(--profile-picture--bg-color);
+
+                                /* Button image */
+                                .button-image {
+
+                                    /* Sizing */
+                                    width: 1rem;
+                                    aspect-ratio: 1/1;
+                                }
+                            }
+
+                            /* Profile text */
+                            .button-text {
+                                
+                                /* Display */
+                                display: none;
+
+                                /* Cursor */
+                                cursor: text;
 
                                 /* Colors */
                                 color: white;
-
-                                &:hover {
-
-                                    /* Sizing */
-                                    transform: scale(1.1);
-                                }
-
                             }
                         }
-                        /* #endregion App-Top-Right, Top section */
+                    }
+                }
+                /* #endregion Left bar, Bottom section */
+            }
+            /* #endregion Left bar section */
 
-                        /* #region Main section */
-                        main {
+            /* #region App-Top, Right section */
+            .app-top__right {
 
-                            /* Layout */
-                            flex-grow: 1;
+                /* Overflowing */
+                overflow: auto;
 
-                            /* Spacing */
-                            padding: 1.5rem;
+                /* Display */
+                display: flex;
+                flex-direction: column;
 
-                            /* Colors */
-                            background-color: var(--main-section--bg-color);
+                /* Sizing */
+                flex-grow: 1;
 
-                            /* #region Music category section */
-                            .music-category-section {
+                /* Colors */
+                background-color: black;
 
-                                /* Category list */
-                                .category-list {
-                                    
-                                    /* Display */
-                                    display: flex;
-                                    flex-wrap: wrap;
-                                    justify-content: center;
-                                    column-gap: 1.5rem;
+                /* #region Top bar */
+                .top-bar {
 
-                                    /* Category item */
-                                    .category-item {
+                    /* Positioning */
+                    position: sticky;
+                    top: 0;
+                    right: 0;
+                    z-index: 100;
+                    
+                    /* Spacing */
+                    padding: 1.5rem;
 
-                                        /* Category link */
-                                        .category-link {
+                    /* Text alignment */
+                    text-align: right;
 
-                                            /* Category text */
-                                            .category-text {
-                                                   
-                                                /* Typography */
-                                                text-transform: uppercase;
-                                            }
+                    /* Background */
+                    background-color: var(--top-bar--bg-color);
 
-                                            /* Category underline */
-                                            .category-underline {
+                    .upgrade-link-button {
 
-                                                    /* Sizing */
-                                                    margin: 0.3rem auto;
-                                                    width: 2rem;
+                        /* Spacing */
+                        padding: 0.8rem 2.3rem;
 
-                                                    /* Borders */
-                                                    border-bottom: 2px solid transparent;
-                                            }
+                        /* Borders */
+                        border: 1px solid white;
+                        border-radius: 3rem;
 
-                                            /* Selected */
-                                            &.selected {
+                        /* Text */
+                        text-transform: uppercase;
+                        font-size: 0.8rem;
 
-                                                /* Category underline */
-                                                .category-underline {
+                        /* Colors */
+                        color: white;
 
-                                                    /* Colors */
-                                                    border-color: var(--accent-color);
-                                                }
-                                            }
+                        &:hover {
 
-                                            /* Hover */
-                                            &:hover {
+                            /* Sizing */
+                            transform: scale(1.1);
+                        }
 
-                                                /* Category text */
-                                                .category-text {
+                    }
+                }
+                /* #endregion Top bar */
 
-                                                    /* Colors */
-                                                    color: white;
-                                                }
-                                            }
+                /* #region Main section */
+                main {
+
+                    /* Sizing */
+                    flex-grow: 1;
+
+                    /* Spacing */
+                    padding: 1.5rem;
+
+                    /* Colors */
+                    background-color: var(--main-section--bg-color);
+
+                    /* #region Music category section */
+                    .music-category-section {
+
+                        /* Category list */
+                        .category-list {
+                            
+                            /* Display */
+                            display: flex;
+                            flex-wrap: wrap;
+                            justify-content: center;
+                            column-gap: 1.5rem;
+
+                            /* Category item */
+                            .category-item {
+
+                                /* Category link */
+                                .category-link {
+
+                                    /* Category text */
+                                    .category-text {
+                                            
+                                        /* Typography */
+                                        text-transform: uppercase;
+                                    }
+
+                                    /* Category underline */
+                                    .category-underline {
+
+                                            /* Sizing */
+                                            margin: 0 auto;
+                                            width: 2rem;
+
+                                            /* Borders */
+                                            border-bottom: 2px solid transparent;
+                                    }
+
+                                    /* Selected */
+                                    &.selected {
+
+                                        /* Category underline */
+                                        .category-underline {
+
+                                            /* Colors */
+                                            border-color: var(--accent-color);
+                                        }
+                                    }
+
+                                    /* Hover */
+                                    &:hover {
+
+                                        /* Category text */
+                                        .category-text {
+
+                                            /* Colors */
+                                            color: white;
                                         }
                                     }
                                 }
                             }
-                            /* #endregion Music category section */
+                        }
+                    }
+                    /* #endregion Music category section */
 
-                            /* Recently played section */
-                            .recently-played-section {
+                    /* Recently played section */
+                    .recently-played-section,
+                    /* Created for user section */
+                    .created-for-user-section,
+                    /* Most popular artists section */
+                    .most-popular-artists-section {
 
-                                /* Section title */
-                                .section-title {
+                        /* Section title */
+                        .section-title {
+
+                            /* Spacing */
+                            padding-top: 1.5rem;
+
+                            /* Typography */
+                            font-size: 1.75rem;
+
+                            /* Colors */
+                            color: white;
+                        }
+
+                        /* Section subtitle */
+                        .section-subtitle {
+
+                            /* Display */
+                            display: inline-block;
+
+                            /* Spacing */
+                            padding-top: 0.5rem
+                        }
+
+                        /* Row */
+                        .row {
+
+                            /* Display */
+                            display: flex;
+                            flex-wrap: wrap;
+
+                            /* Spacing */
+                            margin: 0 -0.5rem;
+
+                            /* Album */
+                            .album {
+
+                                /* Sizing */
+                                width: calc(100% / 12 * 6);
+
+                                /* Spacing */
+                                padding: 1.5rem 0.5rem;
+
+                                /* Album image container */
+                                .album-image-container {
+
+                                    /* Positioning */
+                                    position: relative;
+
+                                    /* Album image */
+                                    .album-image {
+
+
+                                    }
+
+                                    /* Play icon button */
+                                    .play-icon-button {
+
+                                        /* Display */
+                                        display: none;
+
+                                        /* Positioning */
+                                        position: absolute;
+                                        top: 0;
+                                        left: 0;
+
+                                        /* Sizing */
+                                        width: 100%;
+                                        height: 100%;
+
+                                        /* Typography */
+                                        text-align: center;
+                                        font-size: 3rem;
+
+                                        /* Colors */
+                                        background-color: rgba(0, 0, 0, 0.5);
+                                    }
+                                }
+
+                                /* Album title */
+                                .album-title {
+
+                                    /* Display */
+                                    display: block;
 
                                     /* Spacing */
-                                    padding: 1.5rem 0;
+                                    padding: 1rem 0;
 
                                     /* Typography */
-                                    font-size: 1.75rem;
+                                    /* font-size: 3rem; */
+                                    text-align: center;
 
                                     /* Colors */
                                     color: white;
                                 }
 
-                                /* Row */
-                                .row {
+                                /* Album authors */
+                                .album-authors {
 
                                     /* Display */
-                                    display: flex;
-                                    flex-wrap: wrap;
+                                    display: block;
 
-                                    /* Spacing */
-                                    margin: 0 -0.5rem;
+                                    /* Typography */
+                                    /* font-size: 3rem; */
+                                    text-align: center;
+                                }
 
-                                    /* Album */
-                                    .album {
+                                /* Hover */
+                                &:hover {
 
-                                        /* Spacing */
-                                        padding: 1rem 0.5rem;
+                                    /* Cursor */
+                                    cursor: pointer;
 
-                                        /* Album image container */
-                                        .album-image-container {
+                                    /* Album image container */
+                                    .album-image-container {
 
-                                            /* Positioning */
-                                            position: relative;
-
-                                            /* Album image */
-                                            .album-image {
-
-
-                                            }
-
-                                            /* Icon button container */
-                                            .icon-button-container {
-
-                                                /* Display */
-                                                display: none;
-
-                                                /* Positioning */
-                                                position: absolute;
-                                                top: 50%;
-                                                left: 50%;
-                                                translate: -50% -50%;
-
-                                                /* Play icon button */
-                                                .play-icon-button {
-
-                                                    /* Typography */
-                                                    font-size: 3rem;
-
-                                                    /* Colors */
-                                                    color: white;
-                                                }
-                                            }
-                                        }
-
-                                        /* Album title */
-                                        .album-title {
+                                        /* Icon button container */
+                                        .play-icon-button{
 
                                             /* Display */
                                             display: block;
-
-                                            /* Spacing */
-                                            padding: 1rem 0;
-
-                                            /* Typography */
-                                            /* font-size: 3rem; */
-                                            text-align: center;
-
-                                            /* Colors */
-                                            color: white;
-                                        }
-
-                                        /* Album authors */
-                                        .album-authors {
-
-                                            /* Display */
-                                            display: block;
-
-                                            /* Typography */
-                                            /* font-size: 3rem; */
-                                            text-align: center;
-                                        }
-
-                                        /* Hover */
-                                        &:hover {
-
-                                            /* Album image container */
-                                            .album-image-container {
-
-                                                /* Icon button container */
-                                                .icon-button-container {
-
-                                                    /* Display */
-                                                    display: block;
-                                                }
-                                            }
                                         }
                                     }
                                 }
                             }
                         }
-                        /* #endregion Main section */
                     }
-                    /* #endregion App-Top, Right section */
                 }
-                /* #endregion App, Top section */
+                /* #endregion Main section */
+            }
+            /* #endregion App-Top, Right section */
+        }
+        /* #endregion App, Top section */
 
-                /* #region Bottom bar */
-                .bottom-bar {
+        /* #region Bottom bar */
+        .bottom-bar {
+
+            /* Display */
+            display: flex;
+            row-gap: 3rem;
+            column-gap: 1rem;
+            justify-content: space-between;
+            align-items: center;
+
+            /* Sizing */
+            min-height: var(--bottom-bar--height);
+
+            /* Spacing */
+            padding: 1rem;
+
+            /* Colors */
+            background-color: var(--bottom-bar--bg-color);
+            color: var(--text-accent-color--base);
+
+            /* Current track information */
+            .current-track-information {
+
+                /* Display */
+                display: flex;
+                column-gap: 0.7rem;
+
+                /* Track album image */
+                .track-album-image {
+
+                     /* Sizing */
+                    width: 2.5rem;
+                    height: 2.5rem;
+                }
+
+                /* Track name */
+                .information-texts .track-name,
+                /* Favorite button */
+                .favorite-button,
+                /* Save button */
+                .save-button {
+
+                    /* Colors */
+                    color: var(--text-color--base);
+
+                    &:hover {
+                        color: var(--text-accent-color--base);
+                    }
+                }
+
+                /* Information texts */
+                .information-texts {
 
                     /* Display */
                     display: flex;
-                    justify-content: space-between;
-                    align-items: center;
+                    flex-direction: column;
+                    justify-content: center;
 
-                    /* Spacing */
-                    padding: 1rem;
+                    /* Track name */
+                    .track-name {
+                        
+                        /* Typography */
+                        font-size: 0.8rem;
 
-                    /* Colors */
-                    background-color: var(--bottom-bar--bg-color);
-
-                    /* Current track information */
-                    .current-track-information {
-
-                        /* Display */
-                        display: flex;
-
-                        /* Track album image */
-                        .track-album-image {
-                            width: 3rem;
-                        }
-                    }
-
-                    /* Playback controls */
-                    .playback-controls {
-
-                        /* Display */
-                        display: flex;
-                        flex-direction: column;
-                        row-gap: 0.5rem;
-
-                        /* Buttons */
-                        .buttons {
-
-                            /* Display */
-                            display: flex;
-                            justify-content: center;
-                            column-gap: 2rem;
+                        &:hover {
 
                             /* Typography */
-                            font-size: 1.5rem;
-
-                            /* Colors */
-                            color: white;
-
-                            /* Play button */
-                            .play-button {
-
-                                /* Play icon */
-                                .play-icon {
-
-                                    /* Typography */
-                                    font-size: 2rem;
-                                }
-                            }
-
-                        }
-
-                        /* Track progress information */
-                        .progress-information {
-
-                            /* Display */
-                            display: flex;
-                            align-items: center;
-                            column-gap: 2rem;
-
-                            /* Current time */
-                            .current-time {
-
-                                /* Colors */
-                                color: white;
-                            }
-
-                            /* Total progress bar */
-                            .total-progress-bar {
-
-                                /* Sizing */
-                                width: 25rem;
-                                height: 0.3rem;
-
-                                /* Colors */
-                                background-color: #5a5a5a;
-
-                                /* Current progress bar */
-                                .current-progress-bar {
-
-                                    /* Sizing */
-                                    width: 20%;
-                                    height: 0.3rem;
-                                        
-                                    /* Colors */
-                                    background-color: #c1c1c1;
-                                }
-                            }
-
-                            /* Total time */
-                            .total-time {
-
-                                /* Colors */
-                                color: white;
-                            }
+                            text-decoration-line: underline;
                         }
                     }
+                }
 
-                    /* Volume controls */
-                    .volume-controls {
+                /* Track buttons */
+                .track-buttons {
+
+                    /* Display */
+                    display: flex;
+                    flex-wrap: wrap;
+                    column-gap: 1rem;
+                }
+            }
+
+            /* Playback controls */
+            .playback-controls {
+
+                /* Display */
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                row-gap: 0.5rem;
+                flex-grow: 1;
+
+                /* Buttons */
+                .buttons-section {
+
+                    /* Display */
+                    display: flex;
+                    justify-content: center;
+                    column-gap: 1.5rem;
+
+                    /* Sizing */
+                    width: 100%;
+                    max-width: 30%;
+
+                    /* Typography */
+                    font-size: 1.5rem;
+
+                    /* Colors */
+                    color: white;
+
+                    /* Play button */
+                    .play-button {
+
+                        /* Typography */
+                        font-size: 2rem;
+
+                        &:hover {
+
+                            /* Scale */
+                            transform: scale(1.1);
+                        }
+                    }
+                }
+
+                /* Progress information */
+                .progress-information {
+
+                    /* Display */
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-grow: 1;
+                    column-gap: 1.5rem;
+
+                    /* Sizing */
+                    width: 100%;
+
+                    /* Current time */
+                    .current-time {
+
+                        /* Colors */
+                        color: white;
+                    }
+
+                    /* Total progress bar */
+                    .total-progress-bar {
 
                         /* Display */
                         display: flex;
                         align-items: center;
-                        column-gap: 1rem;
 
-                        /* Total volume bar */
-                        .total-volume-bar {
+                        /* Sizing */
+                        min-width: 35%;
+                        height: 0.3rem;
 
-                            /* Display */
-                            display: inline-block;
+                        /* Borders */
+                        border-radius: 1rem;
+
+                        /* Colors */
+                        background-color: #5a5a5a;
+
+                        /* Current progress bar */
+                        .current-progress-bar {
 
                             /* Sizing */
-                            width: 10rem;
+                            width: 20%;
                             height: 0.3rem;
 
+                            /* Borders */
+                            border-radius: 1rem;
+                                
                             /* Colors */
-                            background-color: #5a5a5a;
+                            background-color: #c1c1c1;
+                        }
 
-                            /* Current volume bar */
-                            .current-volume-bar {
+                        /* Hover */
+                        &:hover {
 
-                                /* Sizing */
-                                width: 20%;
-                                height: 0.3rem;
-                                    
+                            /* Cursor */
+                            cursor: pointer;
+
+                            /* Current progress bar */
+                            .current-progress-bar {
+
                                 /* Colors */
-                                background-color: #c1c1c1;
+                                background-color: var(--accent-color);
+                            }
+
+                            /* Progress cursor */
+                            .progress-cursor {
+
+                                /* Display */
+                                display: block;
+                            }
+                        }
+                    }
+
+                    /* Total time */
+                    .total-time {
+
+                        /* Colors */
+                        color: white;
+                    }
+                }
+            }
+
+            /* Volume controls */
+            .volume-controls {
+
+                /* Display */
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                gap: 0.7rem;
+
+                /* Total volume bar */
+                .total-volume-bar {
+
+                    /* Borders */
+                    border-radius: 1rem;
+
+                    /* Display */
+                    display: flex;
+                    align-items: center;
+
+                    /* Sizing */
+                    width: 7rem;
+                    height: 0.3rem;
+
+                    /* Colors */
+                    background-color: #5a5a5a;
+
+                    /* Current volume bar */
+                    .current-volume-bar {
+
+                        /* Borders */
+                        border-radius: 1rem;
+
+                        /* Sizing */
+                        width: 20%;
+                        height: 0.3rem;
+                            
+                        /* Colors */
+                        background-color: #c1c1c1;
+                    }
+
+                    &:hover {
+
+                        /* Cursor */
+                        cursor: pointer;
+
+                        /* Current progress bar */
+                        .current-volume-bar {
+
+                            /* Colors */
+                            background-color: var(--accent-color);
+                        }
+
+                        /* Progress cursor */
+                        .progress-cursor {
+
+                            /* Display */
+                            display: block;
+                        }
+                    }
+                }
+            }
+        }
+        /* #endregion Bottom bar */
+    }
+    /* #endregion App */                    
+
+/* #endregion App related rules */
+
+/* #region Media query section */
+
+    /* Small */
+    @media screen and (min-width: 576px) {
+
+        .app {
+            .app__top {
+                .left-bar {
+                    .left-bar__top {
+                        .logo-link-section {
+                            .logo-link {
+                                .logo-link-image {
+                                    padding: 1rem 3rem 1rem 1.5rem;
+                                    &.normal {
+                                        display: inline-block;
+                                    }
+                                    &.small {
+                                        display: none;
+                                    }
+                                }
+                            }
+                        }
+                        .main-menu-section {
+                            .menu-list {
+                                .menu-item {
+                                    text-align: left;
+                                    .menu-button {
+                                        padding: 0.5rem 0 0.5rem 1.5rem;
+                                        .button-text {
+                                            display: inline;
+                                        }
+                                        &.selected {
+                                            /* Borders */
+                                            border-left: 3px solid var(--accent-color);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        .playlist-section {
+                            display: block;
+                        }
+                    }
+                    .left-bar__bottom {
+                        padding: 0 1rem;
+                        text-align: left;
+                        .installation-section {
+                            .install-app-button {
+                                .button-image {
+                                    margin-right: 0.5rem;
+                                }
+                                .button-text {
+                                    display: inline;
+                                }
+                            }
+                        }
+                        .left-bar-separator {
+                            display: block;
+                        }
+                        .profile-section {
+                            .profile-button {
+                                .image-wrapper {
+                                    .button-image {
+                                        margin-right: 0.5rem;
+                                    }
+                                }
+                                .button-text {
+                                    display: inline;
+                                }
                             }
                         }
                     }
                 }
-                /* #endregion Bottom bar */
             }
-            /* #endregion App */
         }
-        /* #endregion Body */
-    }
-    /* #endregion HTML */                        
 
-/* #endregion App related rules */
+    }
+
+    /* Medium */
+    @media screen and (min-width: 768px) {
+
+        .app {
+            .app__top {
+                .app-top__right {
+                    main {
+                        .recently-played-section,
+                        .created-for-user-section,
+                        .most-popular-artists-section {
+                            .row {
+                                .album {
+                                    width: calc(100% / 12 * 3);             
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
+    /* Large */
+    @media screen and (min-width: 992px) {
+
+        .app {
+            .app__top {
+                .app-top__right {
+                    main {
+                        .recently-played-section,
+                        .created-for-user-section,
+                        .most-popular-artists-section {
+                            .row {
+                                .album {
+                                    width: calc(100% / 12 * 2);             
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
+/* #endregion Media query section */
